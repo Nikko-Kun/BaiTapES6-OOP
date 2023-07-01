@@ -13,11 +13,11 @@ export function Validation() {
         getID(spanID).style.display = "none";
         return true;
     }
-    this.checkID = function (value, spanID, message, ds) {
-        var isExist = ds.some(function (p, index) {
-            // return biểu thức so sanh
-            return p.id === value;
+    this.checkID = function (value, spanID, message, mangDS) {
+        var isExist = mangDS.some(function (ds, index) {
+            return ds.id === value;
         });
+
         if (isExist) {
             document.getElementById(spanID).innerHTML = message;
             document.getElementById(spanID).style.display = "block";
@@ -28,6 +28,7 @@ export function Validation() {
         document.getElementById(spanID).style.display = "none";
         //trả kết quả true
         return true;
+
     }
     this.checkEmail = function (value, spanID, message) {
         var pattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/

@@ -2,7 +2,7 @@ import { Person } from "./person.js";
 export class Student extends Person{
     constructor(toan, ly, hoa, ...restPerson){
         super(...restPerson);
-        this.toan = toan;
+        this.toan = toan;   
         this.ly = ly;
         this.hoa = hoa;
     }
