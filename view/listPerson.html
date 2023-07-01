@@ -1,0 +1,228 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+
+<body>
+    <!--! NAVIGATION -->
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="#">Cybersoft Academy</a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
+            data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <input class="form-control form-control-dark w-100" type="text" id="txtSearch" placeholder="Search" aria-label="Search">
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="#">Sign out</a>
+            </li>
+        </ul>
+    </nav>
+    <!--! DATABOARD -->
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="sidebar-sticky pt-3 text-success">
+                    <ul class="nav flex-column mx-4 mb-4">
+                        <li class="nav-item my-4">
+                            <a class="nav-link active" href="/index.html">
+                                <i class="fa fa-home"></i>
+                                Introduction <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <li class="nav-item">
+                                <i class="fa-solid fa-users"></i>
+                                <select class="User-select text-success" id="UserSelected">
+                                  <option value="0">Select User</option>
+                                  <option value="1">Student</option>
+                                  <option value="2">Employee</option>
+                                  <option value="3">Customer</option>
+                                </select>
+                              </li>
+                        </li>
+                    </ul>
+                    <span class="text-center">Please select user before using</span>
+                </div>
+            </nav>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                <nav class="my-3" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">User</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Person List</li>
+                    </ol>
+                </nav>
+
+                <h2>Danh Sách Sinh Viên</h2>
+                <!-- Button trigger modal -->
+                <div class="row">
+                    <div class="col-8">
+                        <button id="btnThem" type="button" style="display: none;" class="btn btn-warning mb-3 text-white" data-toggle="modal"
+                            data-target="#exampleModal">
+                            Thêm đối tượng
+                        </button>
+                    </div>
+                </div>
+
+                <div class="table-responsive foodTable">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr class="bg-warning text-white">
+                                <th>ID</th>
+                                <th>Tên</th>
+                                <th>Email</th>
+                                <th>Địa chỉ</th>
+                                <th>Thông tin chi tiết</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodylist">
+
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+ 
+    <!--! Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Thêm Sinh Viên</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="needs-validation" id="personForm">
+                        <div class="row">
+                            <!--! COMMON FORM -->
+                            <div class="col-md-6 mb-3">
+                                <label for="foodID">Mã Số</label>
+                                <input type="text" class="form-control" id="personID" placeholder="" value=""
+                                    required>
+                                <span id="spanID" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="personName">Họ tên</label>
+                                <input type="text" class="form-control" id="personName" placeholder=""
+                                    required>
+                                <span id="spanName" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="personEmail">Email</label>
+                                <input type="email" class="form-control" id="personEmail" placeholder=""
+                                    value="" required>
+                                <span id="spanEmail" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label for="personContact">Địa chỉ</label>
+                                    <input type="text" class="form-control" id="personContact" placeholder=""
+                                        value="" required>
+                                    <span id="spanContact" class="text-danger"></span>
+                                </div>
+                            </div>    
+                            </div>
+                            <!--! User Student -->                           
+                                <div class="row" id="userStudent" style="display: none;">
+                                    <div class="col-md-4 mb-3"  >
+                                        <label for="diemToan">Điểm Toán</label>
+                                        <input type="number" class="form-control" id="diemToan" placeholder=""
+                                            value="" required min="0" max="10">
+                                        <span id="spanToan" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-4 mb-3"  >
+                                        <label for="diemLy">Điểm Lý</label>
+                                        <input type="number" class="form-control" id="diemLy" placeholder=""
+                                            value="" required min="0" max="10">
+                                        <span id="spanLy" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-md-4 mb-3"  >
+                                        <label for="diemHoa">Điểm Hóa</label>
+                                        <input type="number" class="form-control" id="diemHoa" placeholder=""
+                                            value="" required min="0" max="10">
+                                        <span id="spanHoa" class="text-danger"></span>
+                                    </div>
+                                </div>                       
+                            <!--! User Employee -->
+                            <div class="row" id="userEmployee" style="display: none;">
+                                <div class="col-md-6 mb-3" >
+                                    <label for="soNgaylam">Số ngày làm việc trong tháng</label>
+                                    <input type="number" class="form-control" id="soNgaylam"
+                                        placeholder="" value="" required min="0" max="30">
+                                    <span id="spanDayNum" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="luongNgay">Lương theo ngày</label>
+                                    <input type="number" class="form-control" id="luongNgay"
+                                        placeholder="...vnd" value="" required min="0">
+                                    <span id="spanDaySalary" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <!--! User Customer -->
+                            <div class="row"id="userCustomer" style="display: none;">
+                                <div class="col-md-6 mb-3" >
+                                    <label for="tenCongTy">Tên công ty</label>
+                                    <input type="text" class="form-control" id="tenCongTy" placeholder=""
+                                        value="" required>
+                                    <span id="spanCompanyName" class="text-danger"></span>
+                                </div>
+                                <div class="col-md-6 mb-3" >
+                                    <label for="triGiaHoaDon">Trị giá hóa đơn</label>
+                                    <input type="number" class="form-control" id="triGiaHoaDon"
+                                        placeholder="" value="" required>
+                                    <span id="spanBill" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="mb-3" id="userCustomer-review" style="display: none;">
+                                <label for="danhGia">Đánh giá</label>
+                                <textarea class="form-control" id="danhGia" rows="3"></textarea>
+                                <span id="spanReview" class="text-danger"></span>
+                            </div>
+                            <div class="row">
+                                <button type="button" class="btn btn-secondary col-md-3 mx-2" data-dismiss="modal" onclick="resetForm()">Close</button>
+                                <button type="button" class="btn btn-warning col-md-3 mx-2" id="btnCapNhat" onclick="capNhatThongTin()">Cập Nhật</button>
+                                <button type="button" class="btn btn-warning col-md-3 mx-2" id="btnAdd">Thêm</button>
+                            </div>
+                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+      
+        <script type="module" src="../js/validation.js"></script>
+    <script type="module" src="../js/listPerson.js"></script>
+
+
+    <script type="module" src="../js/main.js"></script>
+
+</body>
+
+</html>
